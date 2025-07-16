@@ -1,7 +1,7 @@
 #include <QApplication>
 #include "mainwindow.h"
 
-#include "logservice/LogService.hpp"
+#include "logservice/LogService.h"
 
 int main(int argc, char *argv[])
 {

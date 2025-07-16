@@ -1,4 +1,4 @@
-#include "LogService.hpp"
+#include "LogService.h"
 
 #include <QApplication>
 #include <QDateTime>

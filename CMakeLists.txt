@@ -13,7 +13,7 @@ qt_add_executable(condor_hardware_adapter
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        logservice/logservice.hpp
+        logservice/logservice.h
         logservice/logservice.cpp)
 
 target_link_libraries(condor_hardware_adapter PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
