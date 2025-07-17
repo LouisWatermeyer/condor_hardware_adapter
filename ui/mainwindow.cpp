@@ -20,7 +20,7 @@ Widget::Widget(QWidget *parent)
     ui->logLevelCBox->addItem("Info", LogService::LogLevel::Info);
     ui->logLevelCBox->addItem("Warning", LogService::LogLevel::Warning);
     ui->logLevelCBox->addItem("Error", LogService::LogLevel::Error);
-    ui->logLevelCBox->setCurrentIndex(1); // Default to Info
+    ui->logLevelCBox->setCurrentIndex(0); // Default to Info
 }
 
 Widget::~Widget()
@@ -31,5 +31,9 @@ Widget::~Widget()
 void Widget::slotNewLogMessage(QString message, LogService::LogLevel level)
 {
     if (ui->logLevelCBox->currentData().toInt() <= level)
-        ui->logDisplay->setPlainText(ui->logDisplay->toPlainText() + message);
+    {
+        ui->logDisplay->moveCursor(QTextCursor::End);
+        ui->logDisplay->insertPlainText(message);
+        ui->logDisplay->moveCursor(QTextCursor::End);
+    }
 }
