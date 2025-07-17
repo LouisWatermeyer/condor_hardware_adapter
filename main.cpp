@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
     Widget w;
 
     // Start log service
+    QObject::connect(LogService::instance(), &LogService::signalNewLogAdded, &w, &Widget::slotNewLogMessage);
     LogService::log("App started", LogService::Info);
 
     // Start UPD Service

@@ -20,6 +20,7 @@ LogService::LogService(QObject *parent)
 LogService::~LogService()
 {
     // Write logs before shutdown
+    log("Shutdown", Debug);
     slotWriteLogFile();
 }
 
@@ -36,22 +37,22 @@ void LogService::log(QString message, LogLevel level)
 {
     QString formated;
 
-    formated.append(QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm:ss:zzz"));
+    formated.append(QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm:ss:zzz "));
 
     switch (level)
     {
     case Error:
-        formated.append("|ERROR  |");
+        formated.append("|ERROR  | ");
         break;
     case Warning:
-        formated.append("|WARNING|");
+        formated.append("|WARNING| ");
         break;
     case Info:
-        formated.append("|INFO   |");
+        formated.append("|INFO   | ");
         break;
     case Debug:
     default:
-        formated.append("|DEBUG  |");
+        formated.append("|DEBUG  | ");
         break;
     }
 
@@ -92,24 +93,35 @@ void LogService::slotWriteLogFile()
     if (logFiles.isEmpty())
         logFile = new QFile(QDir::currentPath() + "/logs/logfile_1.log");
     else
-        logFile = new QFile(logFiles.last());
+        logFile = new QFile(QDir::currentPath() + "/logs/" + logFiles.last());
 
     // Check if the chosen file is already too large
     if (logFile->size() >= maxLogFileSize)
     {
         QRegularExpression regex("_(\\d+)\\.log$");
-        int maxLogFileNumber = regex.match(logFile->fileName()).captured().toInt();
+        QString maxNumberString = regex.match(logFile->fileName()).captured();
+        maxNumberString.chop(4);
+        maxNumberString.removeFirst();
+        int maxLogFileNumber = maxNumberString.toInt();
+        log(maxNumberString, Debug);
 
+        log("Chosen logFile " + logFile->fileName() + QString(" is too large, add new log file logfile_%1.log").arg(maxLogFileNumber + 1));
         delete logFile;
-        logFile = new QFile(QString("/logs/logfile_%1.log").arg(maxLogFileNumber + 1));
+        logFile = new QFile(QString(QDir::currentPath() + "/logs/logfile_%1.log").arg(maxLogFileNumber + 1));
     }
 
-    // Now we should have a calid file to write.
+    // Now we should have a valid file to write.
+    log("Opening logfile " + logFile->fileName(), Debug);
     if (logFile->open(QIODevice::Append))
     {
         QTextStream out(logFile);
         out << mLogs;
         mLogs.clear();
+        logFile->close();
+    }
+    else
+    {
+        log("Could not write to logFile " + logFile->fileName() + logFile->errorString(), Debug);
     }
 
     if (logFile)
