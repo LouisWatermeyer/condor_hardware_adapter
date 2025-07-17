@@ -11,10 +11,10 @@ class LogService : public QObject
 public:
     enum LogLevel
     {
-        Debug,
-        Info,
-        Warning,
-        Error
+        Debug = 0,
+        Info = 1,
+        Warning = 2,
+        Error = 3
     };
 
     LogService(LogService &other) = delete;
@@ -26,13 +26,13 @@ public:
     static void log(QString message, LogLevel level = Debug);
 
 signals:
-    void signalNewLogAdded(QString message);
+    void signalNewLogAdded(QString message, LogLevel level);
 
 protected:
     explicit LogService(QObject *parent = nullptr);
     static LogService *instance_;
 
-    void addToLogs(QString formatedMessage);
+    void addToLogs(QString formatedMessage, LogLevel level);
 
     QString mLogs;
     QTimer mLogFileTimer;

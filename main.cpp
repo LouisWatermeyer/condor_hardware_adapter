@@ -1,5 +1,5 @@
 #include <QApplication>
-#include "mainwindow.h"
+#include "ui/mainwindow.h"
 
 #include "logservice/LogService.h"
 

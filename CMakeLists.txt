@@ -10,9 +10,9 @@ qt_standard_project_setup()
 
 qt_add_executable(condor_hardware_adapter
         main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
+        ui/mainwindow.cpp
+        ui/mainwindow.h
+        ui/mainwindow.ui
         logservice/logservice.h
         logservice/logservice.cpp)
 

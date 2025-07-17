@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include "../logservice/LogService.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui
 {
@@ -19,10 +21,11 @@ public:
     ~Widget();
 
 public slots:
-    void slotNewLogMessage(QString message);
+    void slotNewLogMessage(QString message, LogService::LogLevel level);
 
 private:
     Ui::Widget *ui;
+    LogService::LogLevel mLogLevel = LogService::LogLevel::Info;
 };
 
 #endif // MAINWINDOW_H

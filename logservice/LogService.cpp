@@ -58,13 +58,13 @@ void LogService::log(QString message, LogLevel level)
 
     formated.append(message + '\n');
 
-    instance()->addToLogs(formated);
+    instance()->addToLogs(formated, level);
 }
 
-void LogService::addToLogs(QString formatedMessage)
+void LogService::addToLogs(QString formatedMessage, LogLevel level)
 {
     mLogs.append(formatedMessage);
-    emit signalNewLogAdded(formatedMessage);
+    emit signalNewLogAdded(formatedMessage, level);
 }
 
 void LogService::slotWriteLogFile()
@@ -121,7 +121,7 @@ void LogService::slotWriteLogFile()
     }
     else
     {
-        log("Could not write to logFile " + logFile->fileName() + logFile->errorString(), Debug);
+        log("Could not write to logFile " + logFile->fileName() + logFile->errorString(), Error);
     }
 
     if (logFile)
