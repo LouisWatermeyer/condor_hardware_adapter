@@ -1,9 +1,12 @@
 #include "UDPService.h"
-#include "../logservice/LogService.h"
+#include "LogService.h"
+
+#include <QSharedPointer>
 
 UDPService::UDPService(QHostAddress host, int port, QObject *parent)
     : mHost(host), mPort(port), QObject{parent}
 {
+    mProcessedData = QSharedPointer<QMap<QString, QString>>(new QMap<QString, QString>);
     initSocket();
 }
 
@@ -35,4 +38,15 @@ void UDPService::processDatagram(QNetworkDatagram datagram)
 {
     LogService::log("Datagram recieved:", LogService::LogLevel::Debug);
     LogService::log(datagram.data(), LogService::LogLevel::Debug);
+
+    QStringList parameters = QString(datagram.data()).split('\n');
+    for (auto parameter : parameters)
+    {
+        QStringList keyValue = parameter.split('=');
+
+        if (keyValue.count() == 2)
+            mProcessedData.data()->insert(keyValue.first(), keyValue.last());
+    }
+
+    emit signalDatagramProcessed(mProcessedData);
 }

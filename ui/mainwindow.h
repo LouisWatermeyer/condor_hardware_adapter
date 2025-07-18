@@ -3,7 +3,8 @@
 
 #include <QWidget>
 
-#include "../logservice/LogService.h"
+#include "LogService.h"
+#include "UDPService.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -20,12 +21,16 @@ public:
     explicit Widget(QWidget *parent = nullptr);
     ~Widget();
 
+    void registerUDPService(UDPService *service);
+
 public slots:
     void slotNewLogMessage(QString message, LogService::LogLevel level);
 
 private:
     Ui::Widget *ui;
     LogService::LogLevel mLogLevel = LogService::LogLevel::Info;
+
+    UDPService *mUDPServiceRef = nullptr;
 };
 
 #endif // MAINWINDOW_H

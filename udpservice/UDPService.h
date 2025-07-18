@@ -5,6 +5,8 @@
 #include <QUdpSocket>
 #include <QNetworkDatagram>
 #include <QHostAddress>
+#include <QMap>
+#include <QSharedPointer>
 
 class UDPService : public QObject
 {
@@ -13,6 +15,9 @@ class UDPService : public QObject
 public:
     UDPService(QHostAddress host, int port, QObject *parent = nullptr);
     ~UDPService();
+
+signals:
+    void signalDatagramProcessed(QSharedPointer<QMap<QString, QString>> result);
 
 private slots:
     void slotReadPendingDatagrams();
@@ -24,6 +29,7 @@ private:
     QUdpSocket *mUDPSocket;
     QHostAddress mHost;
     int mPort;
+    QSharedPointer<QMap<QString, QString>> mProcessedData;
 };
 
 #endif // UDPSERCIVE_H

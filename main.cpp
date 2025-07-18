@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
 
     // Start UPD Service
     UDPService udpService(QHostAddress::LocalHost, 55278);
+    w.registerUDPService(&udpService);
 
     w.show();
     return a.exec();

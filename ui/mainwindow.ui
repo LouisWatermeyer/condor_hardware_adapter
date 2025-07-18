@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>811</width>
-    <height>614</height>
+    <width>1080</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,17 +15,291 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Orientation::Vertical</enum>
+    <layout class="QGridLayout" name="gridLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SizeConstraint::SetNoConstraint</enum>
      </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>272</height>
-      </size>
-     </property>
-    </spacer>
+     <item row="0" column="0">
+      <widget class="ParameterSelector" name="speedSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="ParameterSelector" name="altitudeSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="ParameterSelector" name="varioSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="ParameterSelector" name="evarioSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="ParameterSelector" name="nettovarioSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="ParameterSelector" name="integratorSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="ParameterSelector" name="compassSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="ParameterSelector" name="slipballSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="ParameterSelector" name="turnrateSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="ParameterSelector" name="yawstringangleSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="ParameterSelector" name="radiofrequencySelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="ParameterSelector" name="yawSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="ParameterSelector" name="pitchSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="ParameterSelector" name="bankSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="ParameterSelector" name="quaternionxSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="ParameterSelector" name="quaternionySelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="ParameterSelector" name="quaternionzSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2">
+      <widget class="ParameterSelector" name="quaternionwSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="2">
+      <widget class="ParameterSelector" name="axSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="2">
+      <widget class="ParameterSelector" name="aySelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="2">
+      <widget class="ParameterSelector" name="azSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="ParameterSelector" name="vxSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="ParameterSelector" name="vySelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="3">
+      <widget class="ParameterSelector" name="vzSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="3">
+      <widget class="ParameterSelector" name="rollrateSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="3">
+      <widget class="ParameterSelector" name="pitchrateSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="3">
+      <widget class="ParameterSelector" name="yawrateSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="3">
+      <widget class="ParameterSelector" name="gforceSelector">
+       <property name="frameShape">
+        <enum>QFrame::Shape::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Plain</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -76,6 +350,14 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ParameterSelector</class>
+   <extends>QFrame</extends>
+   <header location="global">ParameterSelector.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
