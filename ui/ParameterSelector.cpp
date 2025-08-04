@@ -25,7 +25,7 @@ void ParameterSelector::setDisplayName(QString name)
     mNameLabel.setText(name);
 }
 
-void ParameterSelector::slotUpdateValue(QSharedPointer<QMap<QString, QString>> newValues)
+void ParameterSelector::slotUpdateValue(QSharedPointer<QMap<QString, double>> newValues)
 {
-    mValueLabel.setText(newValues.data()->value(mNameLabel.text()));
+    mValueLabel.setText(QString::number(newValues.data()->value(mNameLabel.text())));
 }

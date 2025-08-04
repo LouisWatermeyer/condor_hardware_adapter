@@ -16,7 +16,7 @@ public:
     void setDisplayName(QString name);
 
 public slots:
-    void slotUpdateValue(QSharedPointer<QMap<QString, QString>> newValues);
+    void slotUpdateValue(QSharedPointer<QMap<QString, double>> newValues);
 
 private:
     QLabel mNameLabel;

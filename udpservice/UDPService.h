@@ -7,6 +7,8 @@
 #include <QHostAddress>
 #include <QMap>
 #include <QSharedPointer>
+#include <QJsonArray>
+#include <QTime>
 
 class UDPService : public QObject
 {
@@ -17,7 +19,7 @@ public:
     ~UDPService();
 
 signals:
-    void signalDatagramProcessed(QSharedPointer<QMap<QString, QString>> result);
+    void signalDatagramProcessed(QSharedPointer<QMap<QString, double>> result);
 
 private slots:
     void slotReadPendingDatagrams();
@@ -29,7 +31,11 @@ private:
     QUdpSocket *mUDPSocket;
     QHostAddress mHost;
     int mPort;
-    QSharedPointer<QMap<QString, QString>> mProcessedData;
+    QSharedPointer<QMap<QString, double>> mProcessedData;
+
+    QJsonArray testData;
+    QTime timeObject;
+    int lastDatagramTime;
 };
 
 #endif // UDPSERCIVE_H
