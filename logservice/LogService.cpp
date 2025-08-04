@@ -4,6 +4,7 @@
 #include <QDateTime>
 #include <QDir>
 #include <QRegularExpression>
+#include <algorithm>
 #include <ostream>
 
 LogService *LogService::instance_ = nullptr;
@@ -87,6 +88,40 @@ void LogService::slotWriteLogFile()
     debugMsg.chop(2);
 
     log(debugMsg, Debug);
+
+    // Clean up old log files if we have more than 5
+    if (logFiles.count() > 5)
+    {
+        // Sort files by creation time to identify oldest ones
+        QFileInfoList fileInfoList;
+        for (const QString &fileName : logFiles)
+        {
+            QFileInfo fileInfo(dir.path() + "/" + fileName);
+            fileInfoList.append(fileInfo);
+        }
+        
+        // Sort by creation time (oldest first)
+        std::sort(fileInfoList.begin(), fileInfoList.end(), 
+                  [](const QFileInfo &a, const QFileInfo &b) {
+                      return a.birthTime() < b.birthTime();
+                  });
+        
+        // Delete oldest files until we have 5 or fewer
+        int filesToDelete = logFiles.count() - 5;
+        for (int i = 0; i < filesToDelete; ++i)
+        {
+            QString fileToDelete = fileInfoList[i].absoluteFilePath();
+            log("Deleting old log file: " + fileToDelete, Info);
+            if (!QFile::remove(fileToDelete))
+            {
+                log("Failed to delete old log file: " + fileToDelete, Warning);
+            }
+        }
+        
+        // Update the logFiles list after deletion
+        logFiles = dir.entryList();
+        log("After cleanup: " + QString::number(logFiles.count()) + " logfiles remaining", Debug);
+    }
 
     QFile *logFile;
     // Create a new first file if needed
