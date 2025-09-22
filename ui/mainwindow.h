@@ -5,6 +5,7 @@
 
 #include "LogService.h"
 #include "UDPService.h"
+#include "COMService.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -22,6 +23,7 @@ public:
     ~Widget();
 
     void registerUDPService(UDPService *service);
+    void registerCOMService(COMService *service);
 
 public slots:
     void slotNewLogMessage(QString message, LogService::LogLevel level);
@@ -31,6 +33,7 @@ private:
     LogService::LogLevel mLogLevel = LogService::LogLevel::Info;
 
     UDPService *mUDPServiceRef = nullptr;
+    COMService *mCOMServiceRef = nullptr;
 };
 
 #endif // MAINWINDOW_H

@@ -3,11 +3,18 @@
 
 #include "ParameterSelector.h"
 #include <QTextDocument>
+#include <QSerialPortInfo>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent), ui(new Ui::Widget)
 {
     ui->setupUi(this);
+
+    // Get available COM Ports
+    Q_FOREACH (QSerialPortInfo port, QSerialPortInfo::availablePorts())
+    {
+        ui->comDeviceCBox->addItem(port.portName());
+    }
 
     // Set Log output to monoapace
     QTextDocument *doc = ui->logDisplay->document();
@@ -65,34 +72,34 @@ void Widget::registerUDPService(UDPService *service)
 
     mUDPServiceRef = service;
 
-    connect(service, &UDPService::signalDatagramProcessed, ui->speedSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->altitudeSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->varioSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->evarioSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->nettovarioSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->integratorSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->compassSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->slipballSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->turnrateSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->yawstringangleSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->radiofrequencySelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->yawSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->pitchSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->bankSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->quaternionxSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->quaternionySelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->quaternionzSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->quaternionwSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->axSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->aySelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->azSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->vxSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->vySelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->vzSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->rollrateSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->pitchrateSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->yawrateSelector, &ParameterSelector::slotUpdateValue);
-    connect(service, &UDPService::signalDatagramProcessed, ui->gforceSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->speedSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->altitudeSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->varioSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->evarioSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->nettovarioSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->integratorSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->compassSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->slipballSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->turnrateSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->yawstringangleSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->radiofrequencySelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->yawSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->pitchSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->bankSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->quaternionxSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->quaternionySelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->quaternionzSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->quaternionwSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->axSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->aySelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->azSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->vxSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->vySelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->vzSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->rollrateSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->pitchrateSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->yawrateSelector, &ParameterSelector::slotUpdateValue);
+    connect(mUDPServiceRef, &UDPService::signalDatagramProcessed, ui->gforceSelector, &ParameterSelector::slotUpdateValue);
 }
 
 void Widget::slotNewLogMessage(QString message, LogService::LogLevel level)
@@ -103,4 +110,14 @@ void Widget::slotNewLogMessage(QString message, LogService::LogLevel level)
         ui->logDisplay->insertPlainText(message);
         ui->logDisplay->moveCursor(QTextCursor::End);
     }
+}
+
+void Widget::registerCOMService(COMService *service)
+{
+    if (service == nullptr)
+        return;
+
+    mCOMServiceRef = service;
+
+    connect(ui->comDeviceCBox, &QComboBox::currentIndexChanged, mCOMServiceRef, &COMService::slotComSelectorIndexChanged);
 }

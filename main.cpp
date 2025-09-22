@@ -19,6 +19,11 @@ int main(int argc, char *argv[])
     UDPService udpService(QHostAddress::LocalHost, 55278);
     w.registerUDPService(&udpService);
 
+    // Start COM Service
+    COMService comService;
+    comService.registerUDPService(&udpService);
+    w.registerCOMService(&comService);
+
     w.show();
     return a.exec();
 }

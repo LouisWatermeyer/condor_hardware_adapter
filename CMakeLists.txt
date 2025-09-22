@@ -9,9 +9,11 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/ui)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/logservice)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/udpservice)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/COMService)
 
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt6 REQUIRED COMPONENTS Network)
+find_package(Qt6 REQUIRED COMPONENTS SerialPort)
 qt_standard_project_setup()
 
 qt_add_executable(condor_hardware_adapter
@@ -24,10 +26,13 @@ qt_add_executable(condor_hardware_adapter
         logservice/logservice.h
         logservice/logservice.cpp
         udpservice/UDPService.h
-        udpservice/UDPService.cpp)
+        udpservice/UDPService.cpp
+        COMservice/COMService.h
+        COMservice/COMService.cpp)
 
 target_link_libraries(condor_hardware_adapter PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries(condor_hardware_adapter PRIVATE Qt${QT_VERSION_MAJOR}::Network)
+target_link_libraries(condor_hardware_adapter PRIVATE Qt${QT_VERSION_MAJOR}::SerialPort)
 
 set_target_properties(condor_hardware_adapter PROPERTIES
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}

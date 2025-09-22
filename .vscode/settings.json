@@ -3,6 +3,9 @@
         "*.h": "cpp",
         "cmath": "cpp",
         "new": "cpp",
-        "qobject": "cpp"
+        "qobject": "cpp",
+        "qtextdocument": "cpp",
+        "sstream": "cpp",
+        "qjsonobject": "cpp"
     }
 }

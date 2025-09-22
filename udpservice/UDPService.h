@@ -34,8 +34,6 @@ private:
     QSharedPointer<QMap<QString, double>> mProcessedData;
 
     QJsonArray testData;
-    QTime timeObject;
-    int lastDatagramTime;
 };
 
 #endif // UDPSERCIVE_H

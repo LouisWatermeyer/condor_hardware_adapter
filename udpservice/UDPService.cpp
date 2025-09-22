@@ -1,19 +1,18 @@
 #include "UDPService.h"
 #include "LogService.h"
 
-#include <QSharedPointer>
 #include <QVariantMap>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QFile>
 #include <QDir>
+#include <cmath>
 
 UDPService::UDPService(QHostAddress host, int port, QObject *parent)
-    : mHost(host), mPort(port), QObject{parent}
+    : mHost(host), mPort(port), QObject(parent)
 {
     mProcessedData = QSharedPointer<QMap<QString, double>>(new QMap<QString, double>);
     initSocket();
-    lastDatagramTime = timeObject.msecsSinceStartOfDay();
 }
 
 UDPService::~UDPService()
@@ -61,21 +60,8 @@ void UDPService::processDatagram(QNetworkDatagram datagram)
         QStringList keyValue = parameter.split('=');
 
         if (keyValue.count() == 2)
-            mProcessedData.data()->insert(keyValue.first(), keyValue.last().toDouble());
+            mProcessedData.data()->insert(keyValue.first(), std::floor(keyValue.last().toDouble() * 100.0) / 100.0);
     }
-
-    // Save to test File
-    mProcessedData.data()->insert("timeSinceLastDatagram", timeObject.msecsSinceStartOfDay() - lastDatagramTime);
-    lastDatagramTime = timeObject.msecsSinceStartOfDay();
-
-    QVariantMap vmap;
-    QMapIterator<QString, double> i(*mProcessedData.data());
-    while (i.hasNext())
-    {
-        i.next();
-        vmap.insert(i.key(), i.value());
-    }
-    testData.append(QJsonObject::fromVariantMap(vmap));
 
     emit signalDatagramProcessed(mProcessedData);
 }
